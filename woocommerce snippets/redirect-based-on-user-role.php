@@ -60,8 +60,7 @@ function logout_redirect() {
 		$user_id = $current_user->ID;
 		$cart_contents = $woocommerce->cart->get_cart();
 		$meta_key = 'cart-'.$user_id;
-        $meta_value = $cart_contents;
-        
+		$meta_value = $cart_contents;
 		//update_user_meta( $user_id, $meta_key, $meta_value);
 		update_option( $meta_key, $meta_value );
         WC()->cart->empty_cart();
