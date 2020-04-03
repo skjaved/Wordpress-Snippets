@@ -1,5 +1,5 @@
 <?php
-
+// Show login and register link;
 if ( ! function_exists( 'header_login' ) ) {
     /**
      * This function outputs the login and register option on the front-end
