@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Accordion</title>
+</head>
+<style>
+    .list {
+        list-style: none;
+        padding-left: 0;
+        padding-top: 20px;
+    }
+
+    .list .list-item {
+        padding: 10px 0;
+        cursor: pointer;
+    }
+
+    .list .list-item .opening_title-holder {
+        position: relative;
+    }
+
+    .list .list-item .opening_title-holder p {
+        padding-right: 30px;
+    }
+
+    .list .list-item .list--description {
+        display: none;
+        padding: 15px 0;
+        cursor: text;
+    }
+
+    .list--description p {
+        padding: 0 22px;
+    }
+
+    .list .list-item .expand:after {
+        content: attr(data-expand);
+        position: absolute;
+        top: 50%;
+        right: 0;
+        font-size: 40px;
+        line-height: 1.5;
+        font-family: var(--primary-font);
+        transform: translate(0%, -50%);
+        -webkit-transform: translate(0%, -50%);
+        -moz-transform: translate(0%, -50%);
+        -ms-transform: translate(0%, -50%);
+        -o-transform: translate(0%, -50%);
+    }
+
+    .list .list-item .collapse:after {
+        content: attr(data-collapse);
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(-5%, -50%);
+        font-size: 40px;
+        line-height: 1.5px;
+        font-family: var(--pr0ary-font);
+        -webkit-transform: translate(-5%, -50%);
+        -moz-transform: translate(-5%, -50%);
+        -ms-transform: translate(-5%, -50%);
+        -o-transform: translate(-5%, -50%);
+    }
+</style>
+<body>
+    <div class="container">
+        <ul class="list">
+            <li class="list-item">
+                <div class="opening_title-holder expand" data-expand="+" data-collapse="-">
+                    <p>Q. Lorem ipsum dolor sit amet.?</p>
+                </div>
+                <div class="list--description">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis nulla rem deserunt quidem. Quia reiciendis fugit quisquam voluptate quod.
+                    </p>
+                </div>
+            </li>
+            <li class="list-item">
+                <div class="opening_title-holder expand" data-expand="+" data-collapse="-">
+                    <p>Q. Lorem ipsum dolor sit amet.?</p>
+                </div>
+                <div class="list--description">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis nulla rem deserunt quidem. Quia reiciendis fugit quisquam voluptate quod.
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        (function ($) {
+        "use strict";
+        var levelOneDropdown = $(".opening_title-holder");
+        levelOneDropdown.on("click", function () {
+            $(this)
+                .parent()
+                .find(".list--description")
+                .slideToggle();
+            $(this).toggleClass("expand");
+            $(this).toggleClass("collapse");
+        });
+    })(jQuery);
+    </script>
+</body>
+</html>
