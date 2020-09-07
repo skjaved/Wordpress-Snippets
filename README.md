@@ -1,6 +1,6 @@
 # Wordpress-Snippets
 
-This repository contains useful snippets and tricks for WordPress and Woocommerce development
+This repository contains useful snippets for WordPress and Woocommerce theme development
 
 - [Get theme directory](#get-theme-directory)
 - [Add svg support to theme](#add-svg-support-to-theme)
@@ -20,7 +20,7 @@ function medura_directory() {
 ## Add svg support to theme
 ```php
 /**
- * Add svg MIME support
+ * Add svg MIME upload support
  */
 function medura_mime_types($mime_types) {
     $mime_types['svg'] = 'image/svg+xml'; //Adding svg extension
