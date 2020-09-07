@@ -1,8 +1,9 @@
 <?php
 /**
  * The function will add the custom order status in woocommerce orders
+ * e.g. Add 'dispatch' order status in product order status option
  */
-// Add custom order status in woocommerce
+// Add/Register custom order status in woocommerce
 function custom_wc_register_dispatch_status() {
 
 	register_post_status( 'wc-dispatch', array(

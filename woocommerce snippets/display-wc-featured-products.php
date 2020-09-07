@@ -30,6 +30,7 @@ if ($featured_query->have_posts()) {
         $product = wc_get_product( $featured_query->post->ID );
 
 ?>
+<!-- Product Card markup -->
 <div class="featured-product">
 
     <a href="<?php the_permalink(); ?>">
@@ -46,6 +47,8 @@ if ($featured_query->have_posts()) {
     </button>
     
 </div>
+<!-- Product Card markup ends -->
 <?php
     endwhile;
+    wp_reset_postdata();
 }

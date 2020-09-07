@@ -1,6 +1,6 @@
 <?php
 /**
- * Show sidebar on product category page and attribute archive page
+ * Show sidebar on product archive page and product attribute archive page
  * 
  * To show content of product custom taxonomy on archive pages
  * add file in yourtheme/woocommerce/taxonomy-product_cat.php.

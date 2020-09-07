@@ -27,5 +27,6 @@ add_filter( 'woocommerce_product_tabs', 'custom_product_data_tab' );
 
 // Product Geometry tab content Callback
 function custom_product_data_tab_content() {
-	get_template_part( '/template-parts/content', 'dir' );
+	// e.g content-post, content-single
+	get_template_part( '/template-parts/content', 'slug' );
 }
