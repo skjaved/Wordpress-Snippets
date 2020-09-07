@@ -1,3 +1,3 @@
 # Wordpress-Snippets
 
-## This repository contains small WordPress snippets and tricks
+## This repository contains useful snippets and tricks for WordPress and Woocommerce development
