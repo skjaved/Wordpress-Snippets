@@ -8,6 +8,7 @@ This repository contains useful snippets for WordPress and Woocommerce theme dev
 - [Custom post excerpt length](#custom-post-excerpt-length)
 - [Get readmore link with excerpt](#get-readmore-link-with-excerpt)
 - [Display featured posts](#display-featured-posts)
+- [Display related posts on single post page](#display-related-posts-on-single-post-page)
 
 ## Get theme directory
 
@@ -215,4 +216,76 @@ $args = array(
     'posts_per_page' => 1,
 );
 $query = new WP_Query( $args );
+```
+
+## Display related posts on single post page
+```php
+// Get related  posts
+if (!function_exists('get_related_posts')) {
+    /**
+     * This function will output posts
+     * related to current post categories
+     * 
+     * @since 1.0.0
+     */
+    function get_related_posts($taxonomy)
+    {
+        $post_id    = get_the_ID();
+        $cat_ids    = array();
+        $categories = get_the_category($post_id);
+        $postType   = get_post_type();
+
+        if( $postType !== 'post' ) :
+            $terms_list = wp_get_post_terms($post_id, $taxonomy);
+            foreach ($terms_list as $term) {
+                array_push($cat_ids, $term->term_id);
+            }
+        else:
+            if ($categories && !is_wp_error($categories)) {
+
+                foreach ($categories as $category) {
+                    array_push($cat_ids, $category->term_id);
+                }
+            }
+        endif;
+
+        $current_post_type = get_post_type($post_id);
+
+        if( $postType !== 'post' ):
+            $args = array(
+                'post_type'         => $current_post_type,
+                'post_status'       => 'publish',
+                'post__not_in'      => array($post_id),
+                'posts_per_page'    => 3,
+                'tax_query'         => array(
+                    array(
+                        'taxonomy' => $taxonomy,
+                        'field'    => 'id',
+                        'terms'    => $cat_ids
+                    ),
+                ),
+            );
+        else:
+            $args = array(
+                'category__in'      => $cat_ids,
+                'post_type'         => $current_post_type,
+                'post_status'       => 'publish',
+                'posts_per_page'    => '4',
+                'post__not_in'      => array($post_id)
+            );
+        endif;
+
+        $relatedPost = new WP_Query($args);
+
+        if ($relatedPost->have_posts()) {
+
+            while ($relatedPost->have_posts()) {
+                $relatedPost->the_post();
+
+                get_template_part('template-parts/content', get_post_type());
+            }
+        }
+        wp_reset_postdata();
+    }
+}
 ```
