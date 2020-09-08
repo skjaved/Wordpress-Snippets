@@ -289,3 +289,5 @@ if (!function_exists('get_related_posts')) {
     }
 }
 ```
+### Use of function:
+call ```get_related_posts($taxonomy)``` inside the post loop and pass the taxonomy of relation as parameter.
