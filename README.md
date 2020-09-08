@@ -5,6 +5,9 @@ This repository contains useful snippets for WordPress and Woocommerce theme dev
 - [Get theme directory](#get-theme-directory)
 - [Add svg support to theme](#add-svg-support-to-theme)
 - [Custom nav walker class for custom menu](#custom-nav-walker-class-for-custom-menu)
+- [Custom post excerpt length](#custom-post-excerpt-length)
+- [Get readmore linke with excerpt](#get-read-more-link-with-excerpt)
+- [Display featured posts](#display-featured-posts)
 
 ## Get theme directory
 
@@ -120,4 +123,96 @@ class WPDocs_Walker_Nav_Menu extends Walker_Nav_Menu {
         endif;
     }
 }
+```
+
+## Custom post excerpt length
+```php
+/**
+ * Filter the except length to 13 words.
+ *
+ * @param int $length Excerpt length.
+ * @return int (Maybe) modified excerpt length.
+ */
+function wp_custom_excerpt_length($length) {
+    return 13;
+}
+add_filter('excerpt_length', 'wp_custom_excerpt_length', 999);
+```
+
+## Get readmore linke with excerpt
+```php
+/**
+ * Filter the excerpt "read more" string.
+ *
+ * @param string $more "Read more" excerpt string.
+ * @return string (Maybe) modified "read more" excerpt string.
+ */
+function wp_excerpt_more($more) {
+
+    return '<a class="moretag" href="' . get_permalink($post->ID) . '">  Read More</a>';
+}
+add_filter('excerpt_more', 'wp_excerpt_more');
+```
+
+## Display featured posts
+```php
+/**
+ * Create checkbox to make the blog post featured
+ *
+ */
+
+function show_custom_meta() {
+    add_meta_box( 'custom_meta', __( 'Featured Posts', 'text-domain' ), 'custom_meta_callback', 'post' );
+}
+
+function custom_meta_callback( $post ) {
+        $featured = get_post_meta( $post->ID );
+    ?>
+	<p>
+        <div class="row-content">
+            <label for="meta-checkbox">
+                <input type="checkbox" name="meta-checkbox" id="meta-checkbox" value="yes" <?php if ( isset ( $featured['meta-checkbox'] ) ) checked( $featured['meta-checkbox'][0], 'yes' ); ?> />
+                <?php _e( 'Check to feature this post', 'textdomain' )?>
+            </label>
+        </div>
+    </p>
+
+<?php
+}
+add_action( 'add_meta_boxes', 'show_custom_meta' );
+
+/**
+ * Saves the custom meta input
+ * Saves meta box value(yes or no)
+ */
+function custom_meta_save( $post_id ) {
+
+    // Checks save status
+    $is_autosave = wp_is_post_autosave( $post_id );
+    $is_revision = wp_is_post_revision( $post_id );
+    $is_valid_nonce = ( isset( $_POST[ 'sm_nonce' ] ) && wp_verify_nonce( $_POST[ 'sm_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
+
+    // Exits script depending on save status
+    if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
+        return;
+    }
+
+ // Checks for input and saves
+if( isset( $_POST[ 'meta-checkbox' ] ) ) {
+    update_post_meta( $post_id, 'meta-checkbox', 'yes' );
+} else {
+    update_post_meta( $post_id, 'meta-checkbox', '' );
+}
+
+}
+add_action( 'save_post', 'custom_meta_save' );
+
+// WP_Query args to display fetured post
+$args = array(
+    'post_type'     => 'post',
+    'meta_key' => 'meta-checkbox',
+    'meta_value' => 'yes',
+    'posts_per_page' => 1,
+);
+$query = new WP_Query( $args );
 ```

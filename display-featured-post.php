@@ -15,7 +15,7 @@ function custom_meta_callback( $post ) {
         <div class="row-content">
             <label for="meta-checkbox">
                 <input type="checkbox" name="meta-checkbox" id="meta-checkbox" value="yes" <?php if ( isset ( $featured['meta-checkbox'] ) ) checked( $featured['meta-checkbox'][0], 'yes' ); ?> />
-                <?php _e( 'Check to feature this post', 'sm-textdomain' )?>
+                <?php _e( 'Check to feature this post', 'textdomain' )?>
             </label>
         </div>
     </p>
