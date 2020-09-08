@@ -6,7 +6,7 @@ This repository contains useful snippets for WordPress and Woocommerce theme dev
 - [Add svg support to theme](#add-svg-support-to-theme)
 - [Custom nav walker class for custom menu](#custom-nav-walker-class-for-custom-menu)
 - [Custom post excerpt length](#custom-post-excerpt-length)
-- [Get readmore linke with excerpt](#get-read-more-link-with-excerpt)
+- [Get readmore link with excerpt](#get-readmore-link-with-excerpt)
 - [Display featured posts](#display-featured-posts)
 
 ## Get theme directory
@@ -139,7 +139,7 @@ function wp_custom_excerpt_length($length) {
 add_filter('excerpt_length', 'wp_custom_excerpt_length', 999);
 ```
 
-## Get readmore linke with excerpt
+## Get readmore link with excerpt
 ```php
 /**
  * Filter the excerpt "read more" string.
