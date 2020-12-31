@@ -3,7 +3,9 @@
  * Show sidebar on product archive page and product attribute archive page
  * 
  * To show content of product custom taxonomy on archive pages
- * add file in yourtheme/woocommerce/taxonomy-product_cat.php.
+ * add taxonomy  file in yourtheme/woocommerce/taxonomy-product_cat.php.
+ * 
+ * and add below snippet in your theme's functions file
  */
 function add_sidebar_on_product_category($true) {
 

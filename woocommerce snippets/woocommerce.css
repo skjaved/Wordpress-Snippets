@@ -4,7 +4,9 @@ Theme Name: themeslug
 WooCommerce styles override
 */
 
-/* This file contains all the styles required for the woocommerce pages */
+/* This file contains all the styles required for the woocommerce pages
+ * This file is extended and customized from underscores starter theme
+ */
 
 /* WooCommerce General Styles */
 .woocommerce-page .entry-header h1 {

@@ -1,6 +1,6 @@
 <?php
 /**
- * This snippet will redirect user on homepage if cart is empty otherwise on checkout page
+ * This snippet will redirect user on homepage if cart is empty otherwise on checkout page after registration at the time of chechout
  */
 function custom_redirection_after_registration(){
     if ( WC()->cart->is_empty() ) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * This snippet will enables you to display product attribute in navigation menu
+ * This snippet will enables you to display product attributes in navigation menu
  * 
  */
 

@@ -3,7 +3,6 @@
  * This snippet will rename the woocommerce default Procssing order status to Order Confirmed
  */
 // Remaning order status 'Processing' to 'Order Confirmed'
-add_filter( 'wc_order_statuses', 'wc_renaming_order_status' );
 function wc_renaming_order_status( $order_statuses ) {
     foreach ( $order_statuses as $key => $status ) {
         if ( 'wc-processing' === $key ) 
@@ -11,3 +10,4 @@ function wc_renaming_order_status( $order_statuses ) {
     }
     return $order_statuses;
 }
+add_filter( 'wc_order_statuses', 'wc_renaming_order_status' );

@@ -3,6 +3,8 @@
  * This file contains all the code required to customize the woocommerce default
  * functionality like removing sidebars, altering the no. of products
  * display on shop page etc..
+ * 
+ * Note: This file is extended from underscores theme with woocommerce support enable
  */
 if (!function_exists('themeslug_woocommerce_product_columns_wrapper')) {
     /**
@@ -147,8 +149,8 @@ add_action('woocommerce_single_product_summary', 'woocommerce_template_single_pr
 /**
  * Remove product raing from single product summary box and shop page loop
  */
-// remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10);
-// remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5);
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10);
+remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5);
 
 /**
  * Always show product rating with 0 reviews

@@ -15,24 +15,25 @@ function wp_custom_user_redirect( $redirect, $user ) {
     global $woocommerce;
     
 	$checkout_url = $woocommerce->cart->get_checkout_url();
-    $homepage = home_url();
+  $homepage = home_url();
     
 	// redirect users based on cart count
-    $url = ( WC()->cart->get_cart_contents_count() !== 0 ) ? $checkout_url : $homepage;
+  $url = ( WC()->cart->get_cart_contents_count() !== 0 ) ? $checkout_url : $homepage;
     
 	$user_id = $user->ID;
-    $meta_key = 'cart-'.$user_id;
+  $meta_key = 'cart-'.$user_id;
     
 	//$cart_content=get_user_meta($user_id, $meta_key, true);
-    $cart_content = get_option( $meta_key );
+  $cart_content = get_option( $meta_key );
     
 	// add cart contents
-	foreach ( $cart_content as $cart_item_key => $values )
-	{
+	foreach ( $cart_content as $cart_item_key => $values ) {
+
 		$id =$values['product_id'];
 		$quant=$values['quantity'];
 		$woocommerce->cart->add_to_cart( $id, $quant);
-    }
+	
+	}
     
 	if( $role == 'administrator' ||  $role == 'shop-manager' ||  $role == 'author' ||  $role == 'editor' ) {
 		//Redirect administrator, shop-manager, author and editor to the "Dashboard" page
@@ -54,7 +55,7 @@ function logout_redirect() {
 
 		global $woocommerce;
           
-        // get user details
+    // get user details
 		global $current_user;
 		get_currentuserinfo();
 		$user_id = $current_user->ID;

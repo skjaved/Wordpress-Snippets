@@ -10,6 +10,7 @@ if( ! function_exists( 'display_taxonomy_archive_description' ) ) {
 	 * @return void
 	 */
 	function display_taxonomy_archive_description() {
+
 		if ( is_product_category() ) {
 			$term_object = get_queried_object();
 		?>
@@ -20,5 +21,6 @@ if( ! function_exists( 'display_taxonomy_archive_description' ) ) {
 		<?php
 		}
 	}
+	
 }
 add_action( 'woocommerce_after_shop_loop', 'display_taxonomy_archive_description', 15 );

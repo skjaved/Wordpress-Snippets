@@ -22,14 +22,15 @@ Refer below link to add filters on mobile
             var facet_name = $facet.attr('data-name');
             var facet_label = FWP.settings.labels[facet_name];
 
-            // if ($facet.children().length > 0) {
-            //     $facet.wrap('<div class="facet-wrap"></div>');
-            //     $facet.before('<h3 class="facet-label widget-title">Filter By ' + facet_label + '</h3>');
-            // }
-
-            if ($facet.closest('.facet-wrap').length < 1 && $facet.closest('.facetwp-flyout').length < 1) {
+            if ($facet.closest('.facet-wrap').length < 1 && $facet.closest('.facetwp-flyout').length < 1 && $facet.children().length > 0) {
                 $facet.wrap('<div class="facet-wrap"></div>');
                 $facet.before('<h3 class="facet-label widget-title">' + facet_label + '</h3>');
+            }
+
+            if($facet.children().length <= 0) {
+            	$facet.parent().find('h3').hide();
+            } else {
+            	$facet.parent().find('h3').show();
             }
 
             if( $facet.attr('data-type') === "pager" ) {

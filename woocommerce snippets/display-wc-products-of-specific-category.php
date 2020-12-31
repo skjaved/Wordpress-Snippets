@@ -6,7 +6,7 @@ $args = array(
     'orderby' => 'rand',
     'post_type' => 'product',
     'post_status' => 'publish',
-    'product_cat' => 'toys',
+    'product_cat' => 'toys', // Pass the desired category here
     'ignore_sticky_posts' => 1,
     'posts_per_page' => '12'
 );

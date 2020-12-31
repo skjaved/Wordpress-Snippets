@@ -51,4 +51,5 @@ if ($featured_query->have_posts()) {
 <?php
     endwhile;
     wp_reset_postdata();
+    endif;
 }

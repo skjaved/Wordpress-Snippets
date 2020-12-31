@@ -1,5 +1,6 @@
 <?php
 // Display percentage discount badge on products
+// Add this snippet to your theme's function file
 if ( ! function_exists( 'display_sale_percentage_loop' ) ) {
     /**
      * Display percentage discount badge on products
