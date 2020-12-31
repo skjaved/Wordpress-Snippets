@@ -1,5 +1,6 @@
 <?php
 /**
+ * Example of custom post type
  * Add custom Career post type to wordpress with custom taxonomy
  */
 
@@ -39,7 +40,7 @@ function register_career_post_type() {
 		'label'                 => __( 'Career', 'text-domain' ),
 		'description'           => __( 'Theme Careers', 'text-domain' ),
 		'labels'                => $labels,
-		'show_in_rest' 			=> true, // To display in gutenberg editor
+		'show_in_rest' 					=> true, // To display in gutenberg editor & REST Api, default false
 		'supports'              => array( 'title', 'editor', 'page-attributes', 'revisions' ),
 		//'taxonomies'            => array( 'category', 'post_tag' ), //disabled to add custom taxonomy support
 		'hierarchical'          => true,
@@ -62,7 +63,9 @@ function register_career_post_type() {
 }
 add_action( 'init', 'register_career_post_type', 0 );
 
-// Register Custom Taxonomy
+// Register Custom Taxonomy for custom post type
+// For e.g. taxonomy Departments for Careers post type
+
 function career_departments() {
 
 	$labels = array(
@@ -91,8 +94,8 @@ function career_departments() {
 		'labels'                     => $labels,
 		'hierarchical'               => true,
 		'query_var'                  => true,
-		'show_in_rest' 				 => true,
-		'rewrite'					 => array( 'slug'	=>	'department' ),
+		'show_in_rest' 				 			 => true,
+		'rewrite'										 => array( 'slug'	=>	'department' ),
 		'public'                     => true,
 		'show_ui'                    => true,
 		'show_admin_column'          => true,
