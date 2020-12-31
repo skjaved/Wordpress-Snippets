@@ -16,7 +16,7 @@ This repository contains useful snippets for WordPress and Woocommerce theme dev
 /**
  * Get template directory uri
  */
-function medura_directory() {
+function get_themename_directory() {
     $themeuri = get_template_directory_uri();
     return $themeuri;
 }
