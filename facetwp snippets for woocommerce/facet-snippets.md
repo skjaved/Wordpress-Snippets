@@ -6,6 +6,7 @@ This file containe FacetWp snippets to enhance Woocommerce theme
 - [Show product filter lables](#show-product-filter-lables)
 
 ## Add mobile filters with FacetWp plugin
+Refer below link to add filters on mobile
 [facetwp flyout](https://facetwp.com/add-ons/flyout/)
 
 ## Show product filter lables
