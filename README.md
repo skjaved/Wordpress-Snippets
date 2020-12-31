@@ -158,7 +158,7 @@ add_filter('excerpt_more', 'wp_excerpt_more');
 ## Display featured posts
 ```php
 /**
- * Create checkbox to make the blog post featured
+ * Create custom meta checkbox to make the blog post featured
  *
  */
 
@@ -221,7 +221,8 @@ $query = new WP_Query( $args );
 ## Display related posts on single post page
 ```php
 // Get related  posts
-if (!function_exists('get_related_posts')) {
+// call get_related_posts($taxonomy) inside the post loop and pass the taxonomy of relation as parameter.
+if ( !function_exists('get_related_posts') ) {
     /**
      * This function will output posts
      * related to current post categories
@@ -256,7 +257,7 @@ if (!function_exists('get_related_posts')) {
                 'post_type'         => $current_post_type,
                 'post_status'       => 'publish',
                 'post__not_in'      => array($post_id),
-                'posts_per_page'    => 3,
+                'posts_per_page'    => 3, // No of posts displayed per page
                 'tax_query'         => array(
                     array(
                         'taxonomy' => $taxonomy,
@@ -289,5 +290,3 @@ if (!function_exists('get_related_posts')) {
     }
 }
 ```
-### Use of function:
-call ```get_related_posts($taxonomy)``` inside the post loop and pass the taxonomy of relation as parameter.
